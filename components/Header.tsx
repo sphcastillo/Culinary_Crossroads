@@ -20,7 +20,7 @@ function Header() {
       <div className={buttergone.className}>
         <div className="min-w-[175px] sm:min-w-[240px]">
           <Link href='/'>
-            <h1 className="text-[20px] sm:text-2xl text-[#ffe34f] pl-2 pr-2 sm:pl-4 sm:pr-4 p-2 ">
+            <h1 className="text-[16px] sm:text-2xl text-[#ffe34f] pl-2 pr-2 sm:pl-3 sm:pr-3 p-2 ">
               Culinary Crossroads
             </h1>
           </Link>
@@ -28,7 +28,7 @@ function Header() {
       </div>
     
       <SignedIn>
-        <div className="sm:w-[470px]">
+        <div className="min-w-[179px] sm:w-[470px]">
           <SearchInput />
         </div>
       </SignedIn>

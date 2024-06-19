@@ -22,13 +22,13 @@ async function SearchPage({ params: { term } }: Props) {
   console.log("Recipes ~ Search page", recipes);
 
   return (
-    <div className="py-20 sm:py-24 px-10">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="py-14 sm:py-24 px-2 sm:px-6">
+      <div className="mx-auto max-w-7xl px-2 lg:px-4">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
             Recipes for: {termToUse}
           </h2>
-          <p className="mt-2 text-lg leading-8 text-gray-600">
+          <p className="mt-1 sm:mt-2 text-[17px] leading-8 text-gray-600">
             Check this out! We found some recipes for you.
           </p>
         </div>

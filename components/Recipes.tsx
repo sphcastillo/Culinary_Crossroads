@@ -9,11 +9,11 @@ type Props = {
 function Recipes({ recipes }: Props) {
   console.log("Recipes ~ Recipes component: ", recipes);
   return (
-    <div className="mx-auto mt-12 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-14 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+    <div className="mx-auto mt-9 grid max-w-2xl auto-rows-fr grid-cols-2 gap-5 sm:gap-8 sm:mt-14 lg:mx-0 lg:max-w-none lg:grid-cols-3">
       {recipes.map((recipe, index) => (
         <article
           key={index}
-          className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-8 pb-8 pt-40 sm:pt-24 lg:pt-40"
+          className="relative isolate flex flex-col justify-end overflow-hidden rounded-2xl bg-gray-900 px-2 pb-8 pt-20 sm:pt-24 lg:pt-40"
         >
           <Image
             src={recipe.recipe.image}
