@@ -10,6 +10,10 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'image.clerk.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'edamam-product-images.s3.amazonaws.com',
+            }
             // need to change this later
             // {
             //     protocol: 'https',

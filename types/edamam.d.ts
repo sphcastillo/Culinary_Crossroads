@@ -83,11 +83,3 @@ export interface Hit {
     _links: Links;
 }
   
-export interface EdamamApiResponse {
-    from: number;
-    to: number;
-    count: number;
-    _links: Links;
-    hits: Hit[];
-}
-  
