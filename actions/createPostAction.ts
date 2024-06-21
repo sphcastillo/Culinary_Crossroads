@@ -37,7 +37,7 @@ export default async function createPostAction(formData: FormData){
           user: userDB,
           text: postInput,
         }
-        
+        await Post.create(body);
       } else {
         // 1) create post in database w/o image
 
