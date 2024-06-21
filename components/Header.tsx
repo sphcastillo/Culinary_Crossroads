@@ -18,7 +18,7 @@ function Header() {
     <div className="flex items-center p-2 max-w-6xl mx-auto">
 
       <div className={buttergone.className}>
-        <div className="min-w-[175px] sm:min-w-[240px]">
+        <div className="min-w-[130px] sm:min-w-[240px]">
           <Link href='/'>
             <h1 className="text-[16px] sm:text-2xl text-[#ffe34f] pl-2 pr-2 sm:pl-3 sm:pr-3 p-2 ">
               Culinary Crossroads

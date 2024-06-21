@@ -64,27 +64,30 @@ function PostForm() {
 
           <div className="sm:flex mt-2 mx-2 justify-center items-center">
             <div className="flex justify-center items-center mb-3 sm:mb-0">
-                <input
+              <input
                 type="text"
                 name="postInput"
                 className="block min-w-[200px] w-[420px] rounded-md border-0 px-1.5 py-1.5 mr-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 placeholder="Start writing a post..."
-                />
-                <input
+              />
+              <input
                 ref={fileInputRef}
                 type="file"
                 name="image"
                 accept="image/*"
                 hidden
                 onChange={handleImageChange}
-                />
+              />
             </div>
-            <div className="flex sm:flex justify-center items-center sm:mx-2">
-                <button className="rounded-md bg-[#0048e8] text-[#F4F2ED] px-2.5 py-1.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Post</button>
+            {/* <div className="flex sm:flex justify-center items-center sm:mx-2">
+              <button 
+                className="rounded-md bg-[#0048e8] text-[#F4F2ED] px-2.5 py-1.5 text-sm font-semibold shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                type="submit"
+              >
+                Post
+              </button>
+            </div> */}
           </div>
-          </div>
-
-
         </div>
 
         {preview && (

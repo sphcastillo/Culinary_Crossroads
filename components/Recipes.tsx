@@ -9,7 +9,7 @@ type Props = {
 function Recipes({ recipes }: Props) {
   console.log("Recipes ~ Recipes component: ", recipes);
   return (
-    <div className="mx-auto mt-9 grid max-w-2xl auto-rows-fr grid-cols-2 gap-5 sm:gap-8 sm:mt-14 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+    <div className="mx-auto mt-9 grid max-w-2xl auto-rows-fr grid-cols-2 gap-5 sm:gap-8 sm:mt-14 lg:mx-0 lg:max-w-none lg:grid-cols-4">
       {recipes.map((recipe, index) => (
         <article
           key={index}
