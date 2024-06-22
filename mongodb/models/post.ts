@@ -93,6 +93,7 @@ PostSchema.methods.commentOnPost = async function (commentToAdd: ICommentBase) {
 
 
 PostSchema.statics.getAllPosts = async function () {
+  console.log("Inside getAllPosts")
     try {
       const posts = await this.find()
         .sort({ createdAt: -1 })
@@ -126,7 +127,7 @@ PostSchema.methods.getAllComments = async function () {
       });
       return this.comments;
     } catch (error) {
-      console.log("Attetion: Error when getting all comments", error);
+      console.log("Attention: Error when getting all comments", error);
     }
   };
 

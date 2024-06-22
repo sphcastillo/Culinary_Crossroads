@@ -14,10 +14,9 @@ export interface AddPostRequestBody {
 export async function POST(request: Request) {
     // protect the route with Clerk's auth middleware
     // auth().protect();
-
-    console.log("Going into POST request function")
     const { user, text, imageUrl }: AddPostRequestBody = await request.json();
 
+    
     try {
         await connectDB();
 
@@ -28,15 +27,10 @@ export async function POST(request: Request) {
             ...(imageUrl && { imageUrl }),
         };
 
-        console.log("postData: ",postData);
-
         // create and add a new post in the database
         const post =  await Post.create(postData);
-
         return NextResponse.json({ message: "SUCCESS: Post created successfully!" ,post });
-
     } catch (error){
-        console.log("Error coming from route: ", error);
         return NextResponse.json(
             { error: `ATTENTION: Error occurred while creating post: ${error} `},
             {
