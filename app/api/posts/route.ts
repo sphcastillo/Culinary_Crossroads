@@ -1,5 +1,5 @@
 import connectDB from "@/mongodb/db";
-import { Post, IPostBase } from "@/mongodb/models/post";
+import { IPostBase, Post } from "@/mongodb/models/post";
 import { IUser } from "@/types/user";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
@@ -8,26 +8,35 @@ export interface AddPostRequestBody {
     user: IUser;
     text: string;
     imageUrl?: string | null;
-}
+  }
+  
+// Protected endpoint
+export async function POST(request: Request) {
+    // protect the route with Clerk's auth middleware
+    // auth().protect();
 
-export async function POST(request: Request){
-    auth().protect(); // Protect the route with Clerk authentication
+    console.log("Going into POST request function")
+    const { user, text, imageUrl }: AddPostRequestBody = await request.json();
 
     try {
-        await connectDB(); // connect to the database
-        
-        const { user, text, imageUrl }: AddPostRequestBody = await request.json();
+        await connectDB();
 
+        // if there is an image, upload it to Azure Blob Storage
         const postData: IPostBase = {
             user,
             text,
             ...(imageUrl && { imageUrl }),
         };
 
-        const post = await Post.create(postData);
+        console.log("postData: ",postData);
+
+        // create and add a new post in the database
+        const post =  await Post.create(postData);
+
         return NextResponse.json({ message: "SUCCESS: Post created successfully!" ,post });
 
     } catch (error){
+        console.log("Error coming from route: ", error);
         return NextResponse.json(
             { error: `ATTENTION: Error occurred while creating post: ${error} `},
             {
@@ -35,20 +44,22 @@ export async function POST(request: Request){
             }
         )
     }
-
 }
 
-export async function GET(request: Request){
+// Public endpoint
+export async function GET(request: Request) {
     try {
-        await connectDB(); // connect to the database
+        await connectDB();
 
         const posts = await Post.getAllPosts();
-
+        // return all the posts from the database
         return NextResponse.json({ posts });
-    } catch (error){
+    } catch (error) {
         return NextResponse.json(
-            { error: "An error occured while fetching posts" },
-            { status: 500 }
+            { error: "ATTENTION: Error occurred while fetching posts"},
+            {
+                status: 500,
+            }
         )
     }
 }

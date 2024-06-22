@@ -10,8 +10,7 @@ export interface IPostBase {
     likes?: string[];
 }
 
-export interface IPost extends IPostBase {
-    _id: mongoose.Types.ObjectId;
+export interface IPost extends IPostBase, Document {
     createdAt: Date;
     updatedAt: Date;
 }
@@ -32,7 +31,6 @@ interface IPostStatics {
 }
 
 export interface IPostDocument extends IPost, IPostMethods {}  // singular instance of a post
-
 interface IPostModel extends IPostStatics, Model<IPostDocument> {} // all posts
 
 const PostSchema = new Schema<IPostDocument>(
@@ -71,6 +69,8 @@ PostSchema.methods.unlikePost = async function (userId: string) {
     }
 };
 
+// remove the post and all its comments
+
 PostSchema.methods.removePost = async function () {
     try {
       // access the Post model and deleting with the id
@@ -81,17 +81,18 @@ PostSchema.methods.removePost = async function () {
 };
 
 PostSchema.methods.commentOnPost = async function (commentToAdd: ICommentBase) {
-    // create a new comment and add it to the post's comments array
-     try {
-       const comment = await Comment.create(commentToAdd);
-       this.comments.push(comment._id);
-       await this.save();
-     } catch (error) {
-       console.log("Attention: Error when commenting on post", error);
-     }
- };
+   // create a new comment and add it to the post's comments array
+    try {
+      const comment = await Comment.create(commentToAdd);
+      this.comments.push(comment._id);
+      await this.save();
+    } catch (error) {
+      console.log("Attention: Error when commenting on post", error);
+    }
+};
 
- PostSchema.statics.getAllPosts = async function () {
+
+PostSchema.statics.getAllPosts = async function () {
     try {
       const posts = await this.find()
         .sort({ createdAt: -1 })
@@ -134,6 +135,3 @@ export const Post =
   (models.Post as IPostModel) ||
   mongoose.model<IPostDocument, IPostModel>("Post", PostSchema);
 
-
- 
- 

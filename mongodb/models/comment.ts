@@ -2,15 +2,15 @@ import { IUser } from "@/types/user";
 import mongoose, { Schema, Document, models } from "mongoose";
 
 export interface ICommentBase {
-    user: IUser;
-    text: string;
+  user: IUser;
+  text: string;
 }
 
 export interface IComment extends Document, ICommentBase {
-    _id: mongoose.Types.ObjectId;
-    createdAt: Date;
-    updatedAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
+
 
 const CommentSchema = new Schema<IComment>(
     {
@@ -25,9 +25,8 @@ const CommentSchema = new Schema<IComment>(
     { 
         timestamps: true, 
     }
-);
+)
 
 // if already initialized: use that , otherwise create a new one
 export const Comment =
   models.Comment || mongoose.model<IComment>("Comment", CommentSchema);
-  

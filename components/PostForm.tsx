@@ -13,26 +13,28 @@ function PostForm() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
-  const handlePostAction = async (formData: FormData) => {
+  const handlePostAction = async (formData: FormData): Promise<void> => {
     const formDataCopy = formData;
     ref.current?.reset();
 
     const text = formDataCopy.get("postInput") as string;
 
-    if (!text.trim()) {
-      throw new Error("Post input is required!");
+    if (!text) {
+      throw new Error("You must provide a post input");
     }
+
     setPreview(null);
 
     try {
       await createPostAction(formDataCopy);
     } catch (error) {
       console.error(`Error creating post: ${error}`);
+
+      // Display toast
     }
   };
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
     if (file) {
       setPreview(URL.createObjectURL(file));
     }

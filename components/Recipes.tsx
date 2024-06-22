@@ -55,7 +55,7 @@ function Recipes({ recipes }: Props) {
             </h3>
           </div>
           <div className="flex justify-center items-center mt-2">
-            <button className="text-white bg-[#d7df23] hover:bg-[#0048e8] z-50 rounded-md px-2.5 py-1.5 text-sm font-semibold shadow-sm">
+            <button className="text-white bg-[#d7df23] hover:bg-[#0048e8] hover:text-[#ffe34f] z-50 rounded-md px-2.5 py-1.5 text-sm font-semibold shadow-sm">
               <Link
                 href={recipe.recipe.url}
                 target="_blank"

@@ -8,7 +8,9 @@ import {
   export const containerName = "posts";
   
   const accountName = process.env.AZURE_STORAGE_NAME;
+  console.log("accountName: ", accountName);
   const accountKey = process.env.AZURE_STORAGE_ACCOUNT_KEY;
+  console.log("accountKey: ", accountKey);
   
   if (!accountName || !accountKey) {
     throw new Error("Azure Storage account name and key are required");
@@ -23,9 +25,12 @@ import {
     `https://${accountName}.blob.core.windows.net`,
     sharedKeyCredential
   );
+
+  console.log("Blob Service Client created successfully!", blobServiceClient)
   
   async function generateSASToken() {
     const containerClient = blobServiceClient.getContainerClient(containerName);
+    
     const permissions = new BlobSASPermissions();
     permissions.write = true;
     permissions.create = true;
